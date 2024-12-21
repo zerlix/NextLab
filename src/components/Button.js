@@ -1,12 +1,13 @@
 import React from 'react'
 import { Button, Typography } from '@mui/material';
 
-const DarkRoundedButton = () => {
+
+const myButton = ({value}) => {
   return (
     <Button variant="contained" color="primary">
-      Klick mich
+      {value}
     </Button>
   )
 }
 
-export default DarkRoundedButton
+export default myButton
