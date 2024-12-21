@@ -1,10 +1,10 @@
-import Button from '@/components/Button'
+import Button from '@/components/Button';
+import TextTest from '@/components/typography';
  
 export default function HomePage() {
   return (
     <div>
-      <h1>Hello World</h1>
-      <Button value="aaa"/>
+    <TextTest />
     </div>
-  )
+  );
 }
