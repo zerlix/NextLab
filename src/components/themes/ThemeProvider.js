@@ -1,5 +1,6 @@
 "use client";
-import { CssBaseline, Button, ThemeProvider, createTheme } from '@mui/material';
+
+import { CssBaseline, ThemeProvider, createTheme } from '@mui/material';
 import React, { createContext, useContext, useState, useEffect } from "react";
 
 // 1. Context erstellen

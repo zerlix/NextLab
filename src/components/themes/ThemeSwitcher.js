@@ -1,7 +1,7 @@
 "use client";
 
 import { Button } from "@mui/material";
-import { useTheme } from "@/components/ThemeProviderComponent";
+import { useTheme } from "@/components/themes/ThemeProvider";
 
 export default function ThemeSwitcher() {
   const { mode, toggleTheme } = useTheme();

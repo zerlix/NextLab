@@ -1,5 +1,4 @@
-import Button from '@/components/Button';
-import TextTest from '@/components/typography';
+import TextTest from '@/components/Typography';
  
 export default function HomePage() {
   return (

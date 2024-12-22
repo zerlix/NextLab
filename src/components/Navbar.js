@@ -1,7 +1,7 @@
 "use client";
 
 import { AppBar, Toolbar, Box } from "@mui/material";
-import ThemeSwitcher from "@/components/ThemeSwitcher";
+import ThemeSwitcher from "@/components/themes/ThemeSwitcher";
 
 
 export default function Navbar() {

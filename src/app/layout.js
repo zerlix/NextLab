@@ -5,7 +5,7 @@ import '@fontsource/roboto/400.css';
 import '@fontsource/roboto/500.css';
 import '@fontsource/roboto/700.css';
 import Navbar from '@/components/Navbar';
-import { ThemeProviderComponent } from '@/components/ThemeProviderComponent'  // BENANNTER IMPORT
+import { ThemeProviderComponent } from '@/components/themes/ThemeProvider'  // BENANNTER IMPORT
 
 
 export default function RootLayout({ children }) {
