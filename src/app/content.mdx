@@ -1,0 +1,80 @@
+# Next.js Vorlage mit Prisma, MDX und MUI Material
+
+## Beschreibung
+Diese Vorlage bietet eine solide Grundlage für die Entwicklung einer Next.js-Anwendung mit Unterstützung für:
+
+- **Prisma**: ORM für die Verwaltung der Datenbank.
+- **MDX**: Unterstützung für Markdown mit JSX.
+- **MUI Material**: Komponentenbibliothek für ein modernes UI-Design.
+
+## Installation
+
+1. **Projekt klonen**
+
+   ```bash
+   git clone <repository-url>
+   cd <repository-name>
+   ```
+
+2. **Abhängigkeiten installieren**
+
+   Stelle sicher, dass Node.js und npm installiert sind. Installiere dann die Abhängigkeiten:
+
+   ```bash
+   npm install
+   ```
+
+3. **.env-Datei konfigurieren**
+
+   Erstelle eine `.env`-Datei im Hauptverzeichnis und füge die notwendigen Umgebungsvariablen hinzu. Beispiel:
+
+   ```env
+   DATABASE_URL="postgresql://user:password@localhost:5432/database"
+   ```
+
+4. **Prisma konfigurieren**
+
+   Synchronisiere das Prisma-Schema mit der Datenbank:
+
+   ```bash
+   npx prisma migrate dev --name init
+   ```
+
+5. **Entwicklungsserver starten**
+
+   Starte den Entwicklungsserver:
+
+   ```bash
+   npm run dev
+   ```
+
+   Die Anwendung ist unter `http://localhost:3000` erreichbar.
+
+## Features
+
+### Prisma
+- Konfiguration unter `prisma/schema.prisma`.
+- Datenbankabfragen mit Prisma Client.
+
+### MDX
+- Markdown-Dateien mit React-Komponenten kombinieren.
+
+### MUI Material
+- Angepasste UI-Komponenten.
+
+## Befehle
+
+- **`npm run dev`**: Startet den Entwicklungsserver.
+- **`npm run build`**: Erstellt einen Produktions-Build.
+- **`npm run start`**: Startet die Anwendung im Produktionsmodus.
+- **`npx prisma studio`**: Öffnet die Prisma Studio-Weboberfläche.
+
+
+## Weiterführende Links
+- [Next.js Dokumentation](https://nextjs.org/docs)
+- [Prisma Dokumentation](https://www.prisma.io/docs)
+- [MDX Dokumentation](https://mdxjs.com/)
+- [MUI Material](https://mui.com/)
+
+## Lizenz
+Dieses Projekt ist unter der MIT-Lizenz lizenziert.
