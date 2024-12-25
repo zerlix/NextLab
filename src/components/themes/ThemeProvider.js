@@ -6,7 +6,7 @@ import React, { createContext, useContext, useState, useEffect } from "react";
 const ThemeContext = createContext();
 
 export function ThemeProviderComponent({ children }) {
-  // Initial state aus localStorage oder System-Präferenz
+  // Initialer Zustand aus localStorage oder System-Präferenz
   const [mode, setMode] = useState(() => {
     if (typeof window !== 'undefined') {
       const savedMode = localStorage.getItem("themeMode");
@@ -22,19 +22,21 @@ export function ThemeProviderComponent({ children }) {
     setMounted(true);
   }, []);
 
+  // Funktion zum Umschalten des Themas
   const toggleTheme = () => {
     const newMode = mode === "light" ? "dark" : "light";
     setMode(newMode);
     localStorage.setItem("themeMode", newMode);
   };
 
+  // Erstellen des Themas basierend auf dem aktuellen Modus
   const theme = createTheme({
     palette: {
       mode: mode,
     },
   });
 
-  // Render nichts bis die Client-side Hydration abgeschlossen ist
+  // Rendere nichts, bis die Client-seitige Hydration abgeschlossen ist
   if (!mounted) {
     return null;
   }
@@ -49,4 +51,5 @@ export function ThemeProviderComponent({ children }) {
   );
 }
 
+// Hook zum Verwenden des Themas
 export const useTheme = () => useContext(ThemeContext);
