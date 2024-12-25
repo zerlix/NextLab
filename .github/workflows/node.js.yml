@@ -38,5 +38,8 @@ jobs:
     - run: npm ci
     - name: Run Prisma Migrate
       run: npx prisma migrate deploy
+    - name: Run Prisma Seed
+      
+      run: npm run seed
     - run: npm run build --if-present
     #- run: npm test
