@@ -1,10 +1,15 @@
 import React, { useState } from "react";
-import { AppBar, Toolbar, IconButton, Menu, MenuItem, Typography } from "@mui/material";
+import { AppBar, Toolbar, IconButton, Menu, MenuItem, Typography, Button, Box, useMediaQuery } from "@mui/material";
 import MenuIcon from "@mui/icons-material/Menu";
+import { useTheme } from "@mui/material/styles";
 
 function App() {
   // State, um das Ankerelement für das Menü zu verfolgen
   const [anchorEl, setAnchorEl] = useState(null);
+
+  // Theme und MediaQuery für die Gerätegröße
+  const theme = useTheme();
+  const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
 
   // Funktion, um das Menü zu öffnen, indem das Ankerelement gesetzt wird
   const handleMenuOpen = (event) => {
@@ -20,25 +25,33 @@ function App() {
     <>
       {/* AppBar oben auf der Seite */}
       <AppBar position="static">
-
         <Toolbar>
-        
-          {/* IconButton für das Hamburger-Menü */}
-          <IconButton
-            edge="start"
-            color="inherit"
-            aria-label="menu"
-            onClick={handleMenuOpen}
-          >
-            <MenuIcon />
-          </IconButton>
-        
           {/* Titel der App */}
           <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
             NextLab
           </Typography>
+
+          {isMobile ? (
+            // Hamburger-Menü nur auf mobilen Geräten anzeigen
+            <IconButton
+              edge="start"
+              color="inherit"
+              aria-label="menu"
+              onClick={handleMenuOpen}
+            >
+              <MenuIcon />
+            </IconButton>
+          ) : (
+            // Links nur auf Desktop-Geräten anzeigen
+            <Box edge='end'>
+              <Button color="inherit">Home</Button>
+              <Button color="inherit">About</Button>
+              <Button color="inherit">Contact</Button>
+            </Box>
+          )}
+
+
         </Toolbar>
-      
       </AppBar>
 
       {/* Dropdown-Menü, das erscheint, wenn das Hamburger-Menü geklickt wird */}
