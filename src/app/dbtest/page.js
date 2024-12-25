@@ -1,68 +1,84 @@
-"use client"; 
-import { useEffect, useState } from 'react'; 
-import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper } from '@mui/material'; 
+"use client";
+import { useEffect, useState } from 'react';
+import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper, CircularProgress, Box } from '@mui/material';
+
 
 
 export default function Page() {
 
-  const [users, setUsers] = useState([]); // Speichert die Benutzerdaten (initial leer)
-  const [loading, setLoading] = useState(true); // Speichert den Ladezustand (initial auf 'true', weil Daten geladen werden)
-  const [error, setError] = useState(null); // Speichert Fehlermeldungen (initial auf 'null', da kein Fehler vorliegt)
+  const [users, setUsers] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
 
-  // useEffect wird nach der ersten Renderung ausgeführt und ruft die API auf, um die Benutzerdaten zu holen
   useEffect(() => {
-    
 
-    async function fetchUsers() { // API-Aufruf zum Abrufen der Benutzerdaten
+    // API-Aufruf zum Abrufen der Benutzerdaten
+    async function fetchUsers() {
       try {
-        const response = await fetch('/api/users'); 
-        if (!response.ok) { 
-          throw new Error('Failed to fetch users'); 
+        const response = await fetch('/api/users');
+        if (!response.ok) {
+          throw new Error('Failed to fetch users');
         }
-
-        // Umwandeln der Antwort in JSON
-        const data = await response.json(); 
-        setUsers(data); // Setzt die Benutzerdaten in den Zustand
+        const data = await response.json();
+        setUsers(data);
 
       } catch (error) {
-        setError(error.message); // Wenn ein Fehler auftritt, wird die Fehlermeldung im Zustand gespeichert
+        setError(error.message);
       } finally {
-        setLoading(false); // Setzt den Ladezustand auf 'false', egal ob der API-Aufruf erfolgreich war oder nicht
+        setLoading(false);
       }
     }
 
-    fetchUsers(); 
-
-  }, []); // Der leere Abhängigkeits-Array stellt sicher, dass die Funktion nur einmal nach dem ersten Rendern ausgeführt wird
+    fetchUsers();
+  }, []);
 
 
   // Wenn die Seite noch lädt, wird ein Ladehinweis angezeigt
   if (loading) {
-    return <p>Loading...</p>; // Zeigt "Loading..." an, solange die Daten geladen werden
+    return (
+      <Box
+        sx={{
+          position: 'fixed',
+          top: 0,
+          left: 0,
+          right: 0,
+          bottom: 0,
+          backgroundColor: 'rgba(0, 0, 0, 0.5)',
+          display: 'flex',
+          justifyContent: 'center',
+          alignItems: 'center',
+          zIndex: 9999,
+        }}
+      >
+        <CircularProgress />
+      </Box>
+    ); 
   }
+
 
   // Wenn ein Fehler aufgetreten ist, wird eine Fehlermeldung angezeigt
   if (error) {
-    return <p>Error: {error}</p>; // Zeigt den Fehler an, wenn einer auftritt
+    return <p>Error: {error}</p>; 
   }
+
 
   // Wenn keine Fehler und keine Ladeanzeige vorhanden sind, wird die Tabelle mit den Benutzerdaten angezeigt
   return (
     <>
-      <h1>Tabelle User</h1> 
-      <TableContainer component={Paper}> 
-        <Table> 
+      <h1>Tabelle User</h1>
+      <TableContainer component={Paper}>
+        <Table>
           <TableHead>
             <TableRow>
-              <TableCell>Name</TableCell> 
-              <TableCell>Email</TableCell> 
+              <TableCell>Name</TableCell>
+              <TableCell>Email</TableCell>
             </TableRow>
           </TableHead>
-          <TableBody> 
+          <TableBody>
             {users.map((user) => ( // Iteriert über alle Benutzer und zeigt ihre Daten an
-              <TableRow key={user.id}> 
-                <TableCell>{user.name}</TableCell> 
-                <TableCell>{user.email}</TableCell> 
+              <TableRow key={user.id}>
+                <TableCell>{user.name}</TableCell>
+                <TableCell>{user.email}</TableCell>
               </TableRow>
             ))}
           </TableBody>
