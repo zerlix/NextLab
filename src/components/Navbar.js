@@ -8,7 +8,7 @@ import { useTheme } from "@mui/material/styles";
 const navigationLinks = [
   { title: 'Home', path: '/' },
   { title: 'MDX Demo', path: '/howtos/ngnix' },
-  { title: 'Tests', path: '/test' }
+  { title: 'DB Demo', path: '/dbtest' }
 ];
 
 function Navbar({ title = "NextLab" }) {
