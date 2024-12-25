@@ -9,7 +9,7 @@ export default async function Page() {
     return (
       <>
         <h1>User</h1>
-        <TableContainer component={Paper} sx={{ width: '80%', margin: '0 auto' }}>
+        <TableContainer component={Paper}>
           <Table>
             <TableHead>
               <TableRow>

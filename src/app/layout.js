@@ -28,7 +28,7 @@ export default function RootLayout({ children }) {
         <ThemeProviderComponent>
           <Navbar />
           <MDXProvider components={useMDXComponents({})}>
-            <main>
+            <main style={{ width: '80%', margin: '0 auto' }}>
               {children}
             </main>
           </MDXProvider>
