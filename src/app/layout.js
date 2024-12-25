@@ -8,7 +8,7 @@ import { ThemeProviderComponent } from '@/components/themes/ThemeProvider'
 
 // Components
 import Navbar from '@/components/Navbar';
-
+import ThemeSwitcher from '@/components/themes/ThemeSwitcher';
 //Custom CSS
 import '@/styles/main.css';
 
@@ -28,9 +28,11 @@ export default function RootLayout({ children }) {
         <ThemeProviderComponent>
           <Navbar />
           <MDXProvider components={useMDXComponents({})}>
-            <main>{children}</main>
+            <main>
+              {children}
+            </main>
           </MDXProvider>
-
+          <ThemeSwitcher />
         </ThemeProviderComponent>
       </body>
     </html >

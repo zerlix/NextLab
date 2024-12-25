@@ -3,16 +3,23 @@
 import { CssBaseline, ThemeProvider, createTheme } from '@mui/material';
 import React, { createContext, useContext, useState, useEffect } from "react";
 
-// 1. Context erstellen
 const ThemeContext = createContext();
 
-// 2. Provider-Komponente
 export function ThemeProviderComponent({ children }) {
-  const [mode, setMode] = useState("light");
+  // Initial state aus localStorage oder System-Präferenz
+  const [mode, setMode] = useState(() => {
+    if (typeof window !== 'undefined') {
+      const savedMode = localStorage.getItem("themeMode");
+      if (savedMode) return savedMode;
+      return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+    }
+    return 'light';
+  });
 
+  // Hydration-Problem vermeiden
+  const [mounted, setMounted] = useState(false);
   useEffect(() => {
-    const savedMode = localStorage.getItem("themeMode") || "light";
-    setMode(savedMode);
+    setMounted(true);
   }, []);
 
   const toggleTheme = () => {
@@ -27,6 +34,11 @@ export function ThemeProviderComponent({ children }) {
     },
   });
 
+  // Render nichts bis die Client-side Hydration abgeschlossen ist
+  if (!mounted) {
+    return null;
+  }
+
   return (
     <ThemeContext.Provider value={{ mode, toggleTheme }}>
       <ThemeProvider theme={theme}>
@@ -37,7 +49,4 @@ export function ThemeProviderComponent({ children }) {
   );
 }
 
-// 3. Custom Hook zum Zugriff auf den Kontext
-export function useTheme() {
-  return useContext(ThemeContext);
-}
+export const useTheme = () => useContext(ThemeContext);
