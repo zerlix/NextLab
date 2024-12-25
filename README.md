@@ -58,11 +58,9 @@ Diese Vorlage bietet eine solide Grundlage für die Entwicklung einer Next.js-An
 
 ### MDX
 - Markdown-Dateien mit React-Komponenten kombinieren.
-- MDX-Dateien werden im Verzeichnis `content/` gespeichert.
 
 ### MUI Material
 - Angepasste UI-Komponenten.
-- Themes können in `styles/theme.js` angepasst werden.
 
 ## Befehle
 
