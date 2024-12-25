@@ -1,13 +1,21 @@
 import React, { useState } from "react";
+import PropTypes from 'prop-types';
 import { AppBar, Toolbar, IconButton, Menu, MenuItem, Typography, Button, Box, useMediaQuery } from "@mui/material";
 import MenuIcon from "@mui/icons-material/Menu";
 import { useTheme } from "@mui/material/styles";
 
-function App() {
+// Liste der Navigationslinks mit Titel und Pfad
+const navigationLinks = [
+  { title: 'Home', path: '/' },
+  { title: 'MDX Demo', path: '/howtos/ngnix' },
+  { title: 'Tests', path: '/test' }
+];
+
+function Navbar({ title = "NextLab" }) {
   // State, um das Ankerelement für das Menü zu verfolgen
   const [anchorEl, setAnchorEl] = useState(null);
 
-  // Theme und MediaQuery für die Gerätegröße
+  // Theme und MediaQuery, um zu überprüfen, ob die Ansicht mobil ist
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
 
@@ -26,9 +34,9 @@ function App() {
       {/* AppBar oben auf der Seite */}
       <AppBar position="static">
         <Toolbar>
-          {/* Titel der App */}
+          {/* Titel der App, linksbündig */}
           <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
-            NextLab
+            {title}
           </Typography>
 
           {isMobile ? (
@@ -43,30 +51,45 @@ function App() {
             </IconButton>
           ) : (
             // Links nur auf Desktop-Geräten anzeigen
-            <Box edge='end'>
-              <Button color="inherit">Home</Button>
-              <Button color="inherit">About</Button>
-              <Button color="inherit">Contact</Button>
+            <Box sx={{ display: 'flex', gap: 2 }}>
+              {navigationLinks.map((link) => (
+                <Button 
+                  key={link.path} // Eindeutiger Schlüssel für jedes Element
+                  color="inherit"
+                  href={link.path} // Zielpfad des Links
+                >
+                  {link.title}
+                </Button>
+              ))}
             </Box>
           )}
-
-
         </Toolbar>
       </AppBar>
 
-      {/* Dropdown-Menü, das erscheint, wenn das Hamburger-Menü geklickt wird */}
+      {/* Dropdown-Menü, das auf mobilen Geräten erscheint */}
       <Menu
         anchorEl={anchorEl} // Positioniert das Menü am Ankerelement
         open={Boolean(anchorEl)} // Öffnet das Menü, wenn anchorEl nicht null ist
         onClose={handleMenuClose} // Schließt das Menü, wenn außerhalb geklickt wird
       >
-        {/* Einzelne Menüeinträge */}
-        <MenuItem onClick={handleMenuClose}>Home</MenuItem>
-        <MenuItem onClick={handleMenuClose}>About</MenuItem>
-        <MenuItem onClick={handleMenuClose}>Contact</MenuItem>
+        {navigationLinks.map((link) => (
+          <MenuItem 
+            key={link.path} // Eindeutiger Schlüssel für jedes Element
+            onClick={handleMenuClose} // Menü schließen, wenn ein Eintrag geklickt wird
+            component="a"
+            href={link.path} // Zielpfad des Links
+          >
+            {link.title}
+          </MenuItem>
+        ))}
       </Menu>
     </>
   );
 }
 
-export default App;
+// Proptypes für die Komponente
+Navbar.propTypes = {
+  title: PropTypes.string // Der Titel der App, optional
+};
+
+export default Navbar;
