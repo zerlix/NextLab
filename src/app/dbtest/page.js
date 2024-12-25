@@ -1,12 +1,6 @@
-import { PrismaClient } from '@prisma/client';
 import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper } from '@mui/material';
+import { prisma } from '../../lib/prismaClient';
 
-
-// Singleton PrismaClient to prevent multiple instances
-const globalForPrisma = global;
-globalForPrisma.prisma = globalForPrisma.prisma || new PrismaClient();
-
-if (process.env.NODE_ENV !== 'production') globalForPrisma.prisma = prisma;
 
 export default async function Page() {
   try {
