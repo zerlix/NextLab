@@ -7,7 +7,7 @@ import React, { createContext, useContext, useState, useEffect } from "react";
 const ThemeContext = createContext();
 
 // Der ThemeProviderComponent wickelt die gesamte App mit einem Theme-Provider, 
-// der das aktuelle Thema und die Funktion zum Umschalten des Themas bereitstellt
+// der das aktuelle Theme und die Funktion zum Umschalten des Theme bereitstellt
 export function ThemeProviderComponent({ children }) {
 
   // Initialer Zustand für den Modus (hell oder dunkel) aus dem localStorage oder der System-Präferenz
