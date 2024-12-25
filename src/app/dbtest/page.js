@@ -1,6 +1,7 @@
 "use client";
 import { useEffect, useState } from 'react';
 import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper, CircularProgress, Box } from '@mui/material';
+import LoadingOverlay from '@/components/LoadingOverlay';"@/components/LoadingOverlay";
 
 
 
@@ -33,29 +34,7 @@ export default function Page() {
   }, []);
 
 
-  // Wenn die Seite noch lädt, wird ein Ladehinweis angezeigt
-  if (loading) {
-    return (
-      <Box
-        sx={{
-          position: 'fixed',
-          top: 0,
-          left: 0,
-          right: 0,
-          bottom: 0,
-          backgroundColor: 'rgba(0, 0, 0, 0.5)',
-          display: 'flex',
-          justifyContent: 'center',
-          alignItems: 'center',
-          zIndex: 9999,
-        }}
-      >
-        <CircularProgress />
-      </Box>
-    ); 
-  }
-
-
+ 
   // Wenn ein Fehler aufgetreten ist, wird eine Fehlermeldung angezeigt
   if (error) {
     return <p>Error: {error}</p>; 
@@ -65,6 +44,7 @@ export default function Page() {
   // Wenn keine Fehler und keine Ladeanzeige vorhanden sind, wird die Tabelle mit den Benutzerdaten angezeigt
   return (
     <>
+      <LoadingOverlay loading={loading} /> 
       <h1>Tabelle User</h1>
       <TableContainer component={Paper}>
         <Table>
