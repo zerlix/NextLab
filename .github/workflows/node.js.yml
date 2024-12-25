@@ -1,14 +1,10 @@
 name: Node.js CI
 env:
   DATABASE_URL: ${{ secrets.DATABASE_URL }}
-on:
-  push:
-    branches:
-      - main
-  pull_request:
-    branches:
-      - main
 
+on:
+  workflow_dispatch:  # Manuelle Ausführung
+  
 jobs:
   build:
     runs-on: ubuntu-latest
