@@ -4,7 +4,7 @@
 Diese Vorlage bietet eine solide Grundlage für die Entwicklung einer Next.js-Anwendung mit Unterstützung für:
 
 - **Prisma**: ORM für die Verwaltung der Datenbank.
-- **MDX**: Unterstützung für Markdown mit JSX.
+- **MDX**: Unterstützung für Markdown.
 - **MUI Material**: Komponentenbibliothek für ein modernes UI-Design.
 
 ## Installation
