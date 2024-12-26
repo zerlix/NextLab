@@ -1,23 +1,19 @@
 "use client";
 
-// Importiert notwendige Komponenten und Hooks aus Material-UI und dem eigenen ThemeProvider
 import { IconButton, Tooltip, useTheme as useMuiTheme } from "@mui/material";
-import Brightness4Icon from '@mui/icons-material/Brightness4'; // Icon für den Dunkelmodus
-import Brightness7Icon from '@mui/icons-material/Brightness7'; // Icon für den Hellmodus
-import { useTheme } from "@/components/themes/ThemeProvider"; // Eigener Hook für das Wechseln des Themas
+import Brightness4Icon from '@mui/icons-material/Brightness4'; 
+import Brightness7Icon from '@mui/icons-material/Brightness7'; 
+import { useTheme } from "@/components/themes/ThemeProvider"; 
 
 // Definiert die verschiedenen Modusarten für das Theme
 const THEME_MODES = {
-  LIGHT: 'light',  // Heller Modus
-  DARK: 'dark'     // Dunkler Modus
+  LIGHT: 'light', 
+  DARK: 'dark'    
 };
 
 // Die ThemeSwitcher-Komponente, die das Umschalten zwischen Licht- und Dunkelmodus ermöglicht
 export default function ThemeSwitcher() {
-  // Holt sich den aktuellen Modus und die Funktion zum Umschalten des Themas aus dem ThemeProvider
   const { mode, toggleTheme } = useTheme();
-  
-  // Holt sich das MUI-Theme, um auf Theme-Variablen zuzugreifen
   const theme = useMuiTheme();
 
   return (
@@ -27,11 +23,10 @@ export default function ThemeSwitcher() {
         sx={{ 
           // Positioniert den Button fest unten rechts auf der Seite
           position: 'fixed',
-          bottom: 16, // Abstand vom unteren Rand
-          right: 16,  // Abstand vom rechten Rand
-          bgcolor: 'background.default', // Hintergrundfarbe des Buttons basierend auf dem aktuellen Theme
-          border: `1px solid ${theme.palette.divider}`, // Umrandung des Buttons basierend auf dem aktuellen Theme
-          // Ändert das Aussehen des Buttons beim Hover
+          bottom: 16, 
+          right: 16, 
+          bgcolor: 'background.default',
+          border: `1px solid ${theme.palette.divider}`, 
           '&:hover': {
             bgcolor: 'action.hover',
           },
