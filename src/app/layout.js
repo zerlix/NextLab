@@ -6,6 +6,8 @@ import { useMDXComponents } from '../../mdx-components';
 // Theme CSS / Material UI
 import { ThemeProviderComponent } from '@/components/themes/ThemeProvider'
 
+import { SessionProvider } from "next-auth/react";
+
 // Components
 import Navbar from '@/components/Navbar';
 import ThemeSwitcher from '@/components/themes/ThemeSwitcher';
@@ -29,7 +31,7 @@ export default function RootLayout({ children }) {
           <Navbar />
           <MDXProvider components={useMDXComponents({})}>
             <main style={{ width: '80%', margin: '0 auto' }}>
-              {children}
+            <SessionProvider>{children}</SessionProvider>
             </main>
           </MDXProvider>
           <ThemeSwitcher />
