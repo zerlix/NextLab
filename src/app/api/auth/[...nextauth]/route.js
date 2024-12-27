@@ -27,12 +27,11 @@ export const handler = NextAuth({
       },
     }),
   ],
-  pages: {
-    signIn: "/auth/signin", // benutzerdefinierte Anmeldeseite
-  },
+
   session: {
     strategy: "jwt",
   },
+  
   callbacks: {
     async jwt({ token, user }) {
       if (user) {
