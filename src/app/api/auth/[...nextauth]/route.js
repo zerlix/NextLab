@@ -27,7 +27,9 @@ export const handler = NextAuth({
       },
     }),
   ],
-
+  pages: {
+    signIn: "/user/login", // benutzerdefinierte Anmeldeseite
+  },
   session: {
     strategy: "jwt",
   },
