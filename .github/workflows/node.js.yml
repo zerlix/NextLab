@@ -3,7 +3,12 @@ env:
   DATABASE_URL: ${{ secrets.DATABASE_URL }}
 
 on:
-  workflow_dispatch:  # Manuelle Ausführung
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
   
 jobs:
   build:
