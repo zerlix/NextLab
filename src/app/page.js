@@ -1,12 +1,17 @@
-import TextTest from '@/components/Typography';
-import Content from './content.mdx'; // Importiert die MDX-Datei
-import { ThemeProviderComponent } from '@/components/themes/ThemeProvider'; // Importiert den ThemeProvider
+// app/page.js
+"use client";
 
+// MD unterstützung
+import { MDXProvider } from '@mdx-js/react';
+import { useMDXComponents } from '../../mdx-components';
+import Content from './content.mdx'; 
 
 export default function HomePage() {
   return (
     <>
-        <Content /> {/* Rendert den Inhalt der MDX-Datei */}
+      <MDXProvider components={useMDXComponents({})}>
+        <Content />
+      </MDXProvider>
     </>
   );
 }
