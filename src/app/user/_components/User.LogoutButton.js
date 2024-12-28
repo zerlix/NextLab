@@ -1,5 +1,4 @@
 // app/user/_components/User.LogoutButton.js
-
 "use client";
 import { signOut } from "next-auth/react";
 
