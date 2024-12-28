@@ -2,7 +2,7 @@
 // Theme CSS / Material UI
 import { ThemeProviderComponent } from '@/components/themes/ThemeProvider'
 
-// Auth Session
+// Next-Auth Session
 import { SessionProvider } from "next-auth/react";
 
 // Components
