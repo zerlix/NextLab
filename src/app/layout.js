@@ -1,3 +1,4 @@
+// app/layout.js
 "use client";
 // Theme CSS / Material UI
 import { ThemeProviderComponent } from '@/components/themes/ThemeProvider'
