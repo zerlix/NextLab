@@ -7,7 +7,6 @@ import { useTheme } from "@mui/material/styles";
 // Liste der Navigationslinks mit Titel und Pfad
 const navigationLinks = [
   { title: 'Home', path: '/' },
-  { title: 'MDX Demo', path: '/howtos/ngnix' },
   { title: 'Profil', path: '/user' }
 ];
 
