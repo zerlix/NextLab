@@ -3,14 +3,19 @@ import PropTypes from 'prop-types';
 import { AppBar, Toolbar, IconButton, Menu, MenuItem, Typography, Button, Box, useMediaQuery } from "@mui/material";
 import MenuIcon from "@mui/icons-material/Menu";
 import { useTheme } from "@mui/material/styles";
+import { useSession } from "next-auth/react";
 
 // Liste der Navigationslinks mit Titel und Pfad
 const navigationLinks = [
   { title: 'Home', path: '/' },
-  { title: 'Profil', path: '/user' }
+  { title: 'Login', path: '/user/login' },
+  { title: 'Profil', path: '/user/' }
 ];
 
 function Navbar({ title = "NextLab" }) {
+  // Benutzersitzung und Router für die Navigation
+  const { data: session, status } = useSession();
+  
   // State, um das Ankerelement für das Menü zu verfolgen
   const [anchorEl, setAnchorEl] = useState(null);
 
@@ -27,6 +32,13 @@ function Navbar({ title = "NextLab" }) {
   const handleMenuClose = () => {
     setAnchorEl(null);
   };
+
+  // Filtere die Navigation-Links basierend auf dem Anmeldestatus
+  const filteredLinks = navigationLinks.filter(link => {
+    if (status === "authenticated" && link.title === 'Login') return false;
+    if (status !== "authenticated" && link.title === 'Logout') return false;
+    return true;
+  });
 
   return (
     <>
@@ -51,7 +63,7 @@ function Navbar({ title = "NextLab" }) {
           ) : (
             // Links nur auf Desktop-Geräten anzeigen
             <Box sx={{ display: 'flex', gap: 2 }}>
-              {navigationLinks.map((link) => (
+              {filteredLinks.map((link) => (
                 <Button 
                   key={link.path} // Eindeutiger Schlüssel für jedes Element
                   color="inherit"
@@ -71,7 +83,7 @@ function Navbar({ title = "NextLab" }) {
         open={Boolean(anchorEl)} // Öffnet das Menü, wenn anchorEl nicht null ist
         onClose={handleMenuClose} // Schließt das Menü, wenn außerhalb geklickt wird
       >
-        {navigationLinks.map((link) => (
+        {filteredLinks.map((link) => (
           <MenuItem 
             key={link.path} // Eindeutiger Schlüssel für jedes Element
             onClick={handleMenuClose} // Menü schließen, wenn ein Eintrag geklickt wird
