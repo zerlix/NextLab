@@ -36,7 +36,7 @@ function Navbar({ title = "NextLab" }) {
   // Filtere die Navigation-Links basierend auf dem Anmeldestatus
   const filteredLinks = navigationLinks.filter(link => {
     if (status === "authenticated" && link.title === 'Login') return false;
-    if (status !== "authenticated" && link.title === 'Logout') return false;
+    if (status !== "authenticated" && link.title === 'Profil') return false;
     return true;
   });
 
