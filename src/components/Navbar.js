@@ -79,9 +79,26 @@ function Navbar({ title = "NextLab" }) {
 
       {/* Dropdown-Menü, das auf mobilen Geräten erscheint */}
       <Menu
-        anchorEl={anchorEl} // Positioniert das Menü am Ankerelement
-        open={Boolean(anchorEl)} // Öffnet das Menü, wenn anchorEl nicht null ist
-        onClose={handleMenuClose} // Schließt das Menü, wenn außerhalb geklickt wird
+        anchorEl={anchorEl}
+        open={Boolean(anchorEl)}
+        onClose={handleMenuClose}
+        disableScrollLock={true}
+        anchorOrigin={{
+          vertical: 'bottom',
+          horizontal: 'right',
+        }}
+        transformOrigin={{
+          vertical: 'top',
+          horizontal: 'right',
+        }}
+        slotProps={{
+          paper: {
+            sx: {
+              minWidth: '200px',
+              marginTop: '8px'
+            }
+          }
+        }}
       >
         {filteredLinks.map((link) => (
           <MenuItem 
