@@ -1,8 +1,10 @@
+// app/user/page.js
+
 "use client"; 
 import { useSession } from "next-auth/react";
 import { useRouter } from "next/navigation"; // Importiere den Router
 import { useEffect } from "react";
-import LogoutButton from "./components/Logout.Button";
+import LogoutButton from "./_components/User.LogoutButton";
 
 export default function Dashboard() {
   const { data: session, status } = useSession();

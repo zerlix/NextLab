@@ -1,16 +1,15 @@
+// app/layout.js
 "use client";
-// MD unterstützung
-import { MDXProvider } from '@mdx-js/react';
-import { useMDXComponents } from '../../mdx-components';
-
 // Theme CSS / Material UI
 import { ThemeProviderComponent } from '@/components/themes/ThemeProvider'
 
+// Next-Auth Session
 import { SessionProvider } from "next-auth/react";
 
 // Components
 import Navbar from '@/components/Navbar';
 import ThemeSwitcher from '@/components/themes/ThemeSwitcher';
+
 //Custom CSS
 import '@/styles/main.css';
 
@@ -27,15 +26,15 @@ export default function RootLayout({ children }) {
   return (
     <html lang="de">
       <body>
+      <SessionProvider>
         <ThemeProviderComponent>
           <Navbar />
-          <MDXProvider components={useMDXComponents({})}>
             <main style={{ width: '80%', margin: '0 auto' }}>
-            <SessionProvider>{children}</SessionProvider>
+            {children}
             </main>
-          </MDXProvider>
           <ThemeSwitcher />
         </ThemeProviderComponent>
+        </SessionProvider>      
       </body>
     </html >
   );
